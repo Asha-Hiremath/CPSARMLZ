@@ -39,10 +39,10 @@
     },
     "variables": {
         "enterpriseScaleManagementGroups": {
-            "platform": "[concat(parameters('topLevelManagementGroupPrefix'), '-', 'parameters('environmentPrefix'), 'platform')]",
-            "landingZone": "[concat(parameters('topLevelManagementGroupPrefix'), '-', 'parameters('environmentPrefix'), 'landingzones')]",
-            "decommissioned": "[concat(parameters('topLevelManagementGroupPrefix'), '-', 'parameters('environmentPrefix'), 'decommissioned')]",
-            "sandboxes": "[concat(parameters('topLevelManagementGroupPrefix'), '-', 'parameters('environmentPrefix'), 'sandboxes')]"
+            "platform": "[concat(parameters('topLevelManagementGroupPrefix'), '-', 'parameters('environmentPrefix'), '-', 'platform')]",
+            "landingZone": "[concat(parameters('topLevelManagementGroupPrefix'), '-', 'parameters('environmentPrefix'), '-', 'landingzones')]",
+            "decommissioned": "[concat(parameters('topLevelManagementGroupPrefix'), '-', 'parameters('environmentPrefix'), '-', 'decommissioned')]",
+            "sandboxes": "[concat(parameters('topLevelManagementGroupPrefix'), '-', 'parameters('environmentPrefix'), '-', 'sandboxes')]"
         }
     },
     "resources": [
