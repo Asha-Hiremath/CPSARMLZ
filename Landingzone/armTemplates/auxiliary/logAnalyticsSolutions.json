@@ -8,6 +8,13 @@
                 "description": "Provide a prefix (max 10 characters, unique at tenant-scope) for the Management Group hierarchy and other resources created as part of Enterprise-scale."
             }
         },
+         "environmentPrefix": {
+            "type": "string",
+            "maxLength": 10,
+            "metadata": {
+                "description": "Provide a prefix (max 10 characters, unique at tenant-scope) for the resources created as part of Enterprise-scale."
+            }
+        },
         "managementSubscriptionId": {
             "type": "string",
             "defaultValue": "",
