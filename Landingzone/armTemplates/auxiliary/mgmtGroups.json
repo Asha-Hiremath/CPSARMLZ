@@ -8,13 +8,6 @@
                 "description": "Provide prefix for the management group structure."
             }
         },
-        "environmentPrefix": {
-            "type": "string",
-            "maxLength": 10,
-            "metadata": {
-                "description": "Provide a prefix (max 10 characters, unique at tenant-scope) for the resources created as part of Enterprise-scale."
-            }
-        },
         "platformMgs": {
             "type": "array",
             "defaultValue": [
@@ -39,10 +32,10 @@
     },
     "variables": {
         "enterpriseScaleManagementGroups": {
-            "platform": "[concat(parameters('topLevelManagementGroupPrefix'), '-', 'parameters('environmentPrefix'), '-', 'platform')]",
-            "landingZone": "[concat(parameters('topLevelManagementGroupPrefix'), '-', 'parameters('environmentPrefix'), '-', 'landingzones')]",
-            "decommissioned": "[concat(parameters('topLevelManagementGroupPrefix'), '-', 'parameters('environmentPrefix'), '-', 'decommissioned')]",
-            "sandboxes": "[concat(parameters('topLevelManagementGroupPrefix'), '-', 'parameters('environmentPrefix'), '-', 'sandboxes')]"
+            "platform": "[concat(parameters('topLevelManagementGroupPrefix'), '-', 'platform')]",
+            "landingZone": "[concat(parameters('topLevelManagementGroupPrefix'), '-', 'landingzones')]",
+            "decommissioned": "[concat(parameters('topLevelManagementGroupPrefix'), '-', 'decommissioned')]",
+            "sandboxes": "[concat(parameters('topLevelManagementGroupPrefix'), '-', 'sandboxes')]"
         }
     },
     "resources": [
@@ -148,7 +141,7 @@
             "condition": "[not(empty(parameters('landingZoneMgs')))]",
             "type": "Microsoft.Management/managementGroups",
             "apiVersion": "2020-05-01",
-            "name": "[concat(parameters('topLevelManagementGroupPrefix'), '-', 'parameters('environmentPrefix'), '-', parameters('landingZoneMgs')[copyIndex()])]",
+            "name": "[concat(parameters('topLevelManagementGroupPrefix'), '-', parameters('landingZoneMgs')[copyIndex()])]",
             "dependsOn": [
                 "[tenantResourceId('Microsoft.Management/managementGroups/', variables('enterpriseScaleManagementGroups').landingZone)]"
             ],
@@ -157,7 +150,7 @@
                 "count": "[length(parameters('landingZoneMgs'))]"
             },
             "properties": {
-                "displayName": "[concat(parameters('topLevelManagementGroupPrefix'), '-', 'parameters('environmentPrefix'), '-', parameters('landingZoneMgs')[copyIndex()])]",
+                "displayName": "[concat(parameters('topLevelManagementGroupPrefix'), '-', parameters('landingZoneMgs')[copyIndex()])]",
                 "details": {
                     "parent": {
                         "id": "[tenantResourceId('Microsoft.Management/managementGroups/', variables('enterpriseScaleManagementGroups').landingZone)]"
