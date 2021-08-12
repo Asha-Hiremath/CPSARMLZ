@@ -1,3 +1,4 @@
+
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-08-01/tenantDeploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
@@ -730,8 +731,7 @@
             "automationResourceId": "[concat('/subscriptions/', variables('singleVsDedicatedMgmtSub'), '/resourceGroups/', variables('platformRgNames').mgmtRg, '/providers/Microsoft.Automation/automationAccounts/', variables('platformResourceNames').automationAccount)]",
             "vNetHubResourceId": "[concat('/subscriptions/', variables('singleVsDedicatedConnectivitySub'), '/resourceGroups/', variables('platformRgNames').connectivityRg, '/providers/Microsoft.Network/virtualNetworks/', variables('platformResourceNames').hubName)]",
             "vWanHubResourceId": "[concat('/subscriptions/', variables('singleVsDedicatedConnectivitySub'), '/resourceGroups/', variables('platformRgNames').connectivityRg, '/providers/Microsoft.Network/virtualHubs/', variables('platformResourceNames').hubName)]",
-            "privateDnsRgResourceId": "[concat('/subscriptions/', variables('singleVsDedicatedConnectivitySub'), '/resourceGroups/', variables('platformRgNames').privateDnsRg)]",
-            "azFirewallResourceId": "[concat('/subscriptions/', variables('singleVsDedicatedConnectivitySub'), '/resourceGroups/', variables('platformRgNames').connectivityRg, '/providers/Microsoft.Network/azureFirewalls/', variables('platformResourceNames').azFwName)]"
+            "privateDnsRgResourceId": "[concat('/subscriptions/', variables('singleVsDedicatedConnectivitySub'), '/resourceGroups/', variables('platformRgNames').privateDnsRg)]"
         },
         // Declaring deterministic resourceId's for ES Lite platform resources (as they will be consolidated into a single platform subscription)
         "deterministicRoleAssignmentGuids": {
@@ -2283,9 +2283,6 @@
                     },
                     "hubResourceId": {
                         "value": "[variables('platformResourceIds').vNetHubResourceId]"
-                    },
-                    "azureFirewallResourceId": {
-                        "value": "[if(equals(parameters('enableAzFwDnsProxy'), 'Yes'), variables('platformResourceIds').azFirewallResourceId, '')]"
                     }
                 }
             }
@@ -2329,9 +2326,6 @@
                     },
                     "vWanHubResourceId": {
                         "value": "[variables('platformResourceIds').vWanHubResourceId]"
-                    },
-                    "azureFirewallResourceId": {
-                        "value": "[if(equals(parameters('enableAzFwDnsProxy'), 'Yes'), variables('platformResourceIds').azFirewallResourceId, '')]"
                     }
                 }
             }
@@ -2487,9 +2481,6 @@
                     },
                     "hubResourceId": {
                         "value": "[variables('platformResourceIds').vNetHubResourceId]"
-                    },
-                    "azureFirewallResourceId": {
-                        "value": "[if(equals(parameters('enableAzFwDnsProxy'), 'Yes'), variables('platformResourceIds').azFirewallResourceId, '')]"
                     }
                 }
             }
@@ -2542,9 +2533,6 @@
                     },
                     "hubResourceId": {
                         "value": "[variables('platformResourceIds').vWanHubResourceId]"
-                    },
-                    "azureFirewallResourceId": {
-                        "value": "[if(equals(parameters('enableAzFwDnsProxy'), 'Yes'), variables('platformResourceIds').azFirewallResourceId, '')]"
                     }
                 }
             }
@@ -3139,3 +3127,4 @@
         }
     }
 }
+
