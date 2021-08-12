@@ -866,26 +866,6 @@
                             "visible": "[not(equals(steps('esConnectivityGoalState').esHub, 'No'))]"
                         },
                         {
-                            "name": "esDdoS",
-                            "type": "Microsoft.Common.OptionsGroup",
-                            "label": "Enable DDoS Protection Standard",
-                            "defaultValue": "Yes (recommended)",
-                            "visible": "[not(equals(steps('esConnectivityGoalState').esHub, 'No'))]",
-                            "toolTip": "If 'Yes' is selected when also adding a connectivity subscription, DDoS Protection Standard will be enabled.",
-                            "constraints": {
-                                "allowedValues": [
-                                    {
-                                        "label": "Yes (recommended)",
-                                        "value": "Yes"
-                                    },
-                                    {
-                                        "label": "No",
-                                        "value": "No"
-                                    }
-                                ]
-                            }
-                        },
-						{
                             "name": "esPrivateDns",
                             "type": "Microsoft.Common.OptionsGroup",
                             "label": "Create Private DNS Zones for Azure PaaS services",
@@ -1836,26 +1816,7 @@
                                 }
                             }
                         },
-                        {
-                            "name": "esLzDdoS",
-                            "type": "Microsoft.Common.OptionsGroup",
-                            "label": "Enable DDoS Protection Standard",
-                            "defaultValue": "Yes (recommended)",
-                            "visible": "[and(not(equals(steps('esConnectivityGoalState').esHub,'No')),equals(steps('esConnectivityGoalState').esDdoS,'Yes'))]",
-                            "toolTip": "If 'Yes' is selected when also adding a connectivity subscription earlier, DDoS Protection Standard will be enabled.",
-                            "constraints": {
-                                "allowedValues": [
-                                    {
-                                        "label": "Yes (recommended)",
-                                        "value": "Yes"
-                                    },
-                                    {
-                                        "label": "No",
-                                        "value": "No"
-                                    }
-                                ]
-                            }
-                        },
+                        
                         {
                             "name": "esLzPrivateLink",
                             "type": "Microsoft.Common.OptionsGroup",
@@ -2187,7 +2148,6 @@
                 "enableErGw": "[steps('esConnectivityGoalState').esErGw]",
                 "enableVpnGw": "[steps('esConnectivityGoalState').esVpnGw]",
                 "enableHub": "[steps('esConnectivityGoalState').esHub]",
-                "enableDdoS": "[steps('esConnectivityGoalState').esDdoS]",
                 "connectivitySubscriptionId": "[if(not(equals(steps('esConnectivityGoalState').esNwSubSection.esNwSub.subscriptionId,steps('esGoalState').esMgmtSubSection.esMgmtSub.subscriptionId)),steps('esConnectivityGoalState').esNwSubSection.esNwSub.subscriptionId,'')]",
                 "enableAzFw": "[steps('esConnectivityGoalState').esAzFw]",
                 "enableAzFwDnsProxy": "[steps('esConnectivityGoalState').esAzFwDns]",
@@ -2226,7 +2186,6 @@
                 "enableSqlAudit": "[steps('lzGoalState').esSqlAudit]",
                 "enableSqlEncryption": "[steps('lzGoalState').esSqlEncryption]",
                 "enableVmBackup": "[steps('lzGoalState').esAzBackup]",
-                "enableLzDdoS": "[steps('lzGoalState').esLzDdoS]",
                 "denyPublicEndpoints": "[steps('lzGoalState').esLzPrivateLink]",
                 "enableEncryptionInTransit": "[steps('lzGoalState').esEncryptionInTransit]",
                 "enableAksPolicy": "[steps('lzGoalState').esAksPolicy]",
